@@ -1,0 +1,43 @@
+Bootstrap: library
+From: centos:8
+OSVersion: 8
+
+%post
+    # some defaults for development
+    yum install -y epel-release
+    yum -y update
+    yum -y install dnf-plugins-core
+    yum config-manager --set-enabled powertools
+    yum repolist
+    yum group install -y --with-optional standard
+    yum group install -y --with-optional development
+    yum install -y redhat-lsb
+    yum install -y yum-utils Lmod qperf
+    # Infiniband, RDMA, etc.
+    yum install -y numactl hwloc hwloc-devel rdma-core-devel infiniband-diags
+    # optional: Omni-Path
+    yum install -y opa-fastfabric opa-basic-tools
+    # optional: UCX
+    yum install -y ucx ucx-ib
+
+%test
+    # add test here
+
+%runscript
+    exec "$@"
+
+%startscript
+    # add start script here
+
+%labels
+    Author HPC Team Freiburg
+    Image CentOS 8 Base Image
+
+%files
+    # Copy files to container
+
+%environment
+    # add environment here
+
+%help
+    CentOS 8 Base Image for NEMO

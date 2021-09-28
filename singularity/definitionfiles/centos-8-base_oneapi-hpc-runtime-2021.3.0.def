@@ -1,0 +1,49 @@
+Bootstrap: library
+From: nemo/default/centos-8-base
+OSVersion: 8
+
+%post
+    yum -y update
+    # Intel OneAPI repo
+    tee > /tmp/oneAPI.repo << EOF
+[oneAPI]
+name=Intel(R) oneAPI repository
+baseurl=https://yum.repos.intel.com/oneapi
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+EOF
+    mv /tmp/oneAPI.repo /etc/yum.repos.d/
+    rpm --import https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+    # Intel oneAPI HPC Runtime 2021.3.0
+    yum install -y intel-hpckit-runtime-2021.3.0.x86_64
+    # optional: set modulefiles
+    /opt/intel/oneapi/modulefiles-setup.sh --ignore-latest --force --output-dir=/etc/modulefiles
+
+%test
+    source /opt/intel/oneapi/setvars.sh
+    mpirun hostname
+
+%runscript
+    source /opt/intel/oneapi/setvars.sh >/dev/null
+    exec "$@"
+
+%startscript
+    source /opt/intel/oneapi/setvars.sh
+    # add start script here
+
+%labels
+    Author HPC Team Freiburg
+    Image CentOS 8 Intel oneAPI HPC Runtime Image
+    Software Intel oneAPI HPC Runtime
+    Version 2021.3.0
+
+%files
+    # Copy files to container
+
+%environment
+    # add environment here
+
+%help
+    Intel oneAPI HPC Runtime 2021.3.0
