@@ -1,5 +1,5 @@
 Bootstrap: library
-From: nemo/default/centos-8-base
+From: nemo/default/almalinux-8-base
 OSVersion: 8
 
 %post
@@ -35,7 +35,7 @@ EOF
 
 %labels
     Author HPC Team Freiburg
-    Image CentOS 8 Intel oneAPI HPC Runtime Image
+    Image AlmaLinux 8 Intel oneAPI HPC Runtime Image
     Software Intel oneAPI HPC Runtime
     Version 2021.3.0
 
