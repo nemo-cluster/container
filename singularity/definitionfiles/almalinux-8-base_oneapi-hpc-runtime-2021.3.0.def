@@ -1,5 +1,5 @@
 Bootstrap: library
-From: nemo/default/almalinux-8-base
+From: nemo/hpc/almalinux-base:8
 OSVersion: 8
 
 %post
