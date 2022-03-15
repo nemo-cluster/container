@@ -1,5 +1,5 @@
-Bootstrap: library
-From: centos:8
+Bootstrap: docker
+From: almalinux:8
 OSVersion: 8
 
 %post
@@ -50,7 +50,7 @@ EOF
 
 %labels
     Author HPC Team Freiburg
-    Image CentOS 8 Intel oneAPI HPC Runtime Image
+    Image Almalinux 8 Intel oneAPI HPC Runtime Image
     Software Intel oneAPI HPC Runtime
     Version 2021.3.0
 
