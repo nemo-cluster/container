@@ -1,5 +1,5 @@
-Bootstrap: library
-From: centos:8
+Bootstrap: docker
+From: quay.io/centos/centos:stream8
 OSVersion: 8
 
 %post
@@ -31,7 +31,7 @@ OSVersion: 8
 
 %labels
     Author HPC Team Freiburg
-    Image CentOS 8 Base Image
+    Image CentOS Stream 8 Base Image
 
 %files
     # Copy files to container
@@ -40,4 +40,4 @@ OSVersion: 8
     # add environment here
 
 %help
-    CentOS 8 Base Image for NEMO
+    CentOS 8 Stream Base Image for NEMO
